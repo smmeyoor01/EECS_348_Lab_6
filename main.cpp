@@ -71,6 +71,39 @@ void print_matrix(int size, int A[100][100]){
     }
 }
 
+void change_element(int row, int column, int A[100][100],int size, int new_val){
+    if(row > 0 && row < size && column > 0 && column < size){
+        A[row][column] = new_val;
+        cout << "Element at point (" << row << ", " << column << ") updated to " << new_val << endl;
+        print_matrix(size, A);
+    }
+    else {
+        cout << "Invalid Input" <<endl;
+    }
+}
+
+void max(int size, int A[100][100]){
+    int max = A[0][0]; // Initialize max_value to smallest possible integer
+
+    for (int x = 0; x < size; x++) {
+        for (int y = 0; y < size; y++) {
+            if (A[x][y] > max) {
+                max = A[x][y];
+            }
+        }
+    }
+    cout << "The maximum value in the matrix is: " << max << endl;
+}
+
+void transpose(int size, int A[100][100]){
+    cout << "Matrix A transposed: " << endl;
+    for(int x = 0; x < size; x++){
+        for(int y = 0; y < size; y++){
+            cout << A[y][x] << " ";
+        }
+        cout << endl;
+    }
+}
 int main(){
     //define matrices
     int A[100][100];
@@ -94,5 +127,14 @@ int main(){
     add(size, A, B);
     subtract(size, A, B);
     multiply(size, A, B);
+
+    int row;
+    int column; 
+    int new_val;
+    cout << "Enter the row, column, and updated value of matrix A: ";
+    cin >> row >> column >> new_val;
+    change_element(row, column, A, size, new_val);
+    max(size, A);
+    transpose(size, A);
 
 }
